@@ -9,7 +9,6 @@ pipeline {
     }
 
     environment {
-     
         DOCKER_IMAGE = 'gagana/bms:latest'
         EKS_CLUSTER_NAME = 'gagana-eks'
         AWS_REGION = 'us-east-1'
@@ -50,10 +49,10 @@ pipeline {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                         sh ''' 
                         echo "Building Docker image..."
-                        docker build --no-cache -t $DOCKER_IMAGE -f bookmyshow-app/Dockerfile bookmyshow-app
+                        docker build --no-cache -t gaganashree06/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
 
                         echo "Pushing Docker image to Docker Hub..."
-                        docker push $DOCKER_IMAGE
+                        docker push gaganashree06/bms:latest
                         '''
                     }
                 }
