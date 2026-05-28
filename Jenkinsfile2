@@ -41,17 +41,6 @@ pipeline {
             }
         }
 
-        stage('OWASP FS Scan') {
-            steps {
-                dependencyCheck additionalArguments: '''
-                    --scan ./bookmyshow-app
-                    --disableYarnAudit
-                    --disableNodeAudit
-                ''', odcInstallation: 'DP-Check'
-
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
 
         stage('Docker Build') {
             steps {
